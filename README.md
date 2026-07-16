@@ -188,7 +188,7 @@ $$\min_{z\, =\, (u_1,\, u_2,\, e)} \quad (u_1 - u_{\text{ref}})^2 + u_2^2 + w\, 
 
 The constraint stack collects, in order: the VRU HOCBF (29), the four lane-boundary HOCBFs (38), the speed-dependent steering-angle bounds (40), longitudinal-acceleration bounds, and the CLF soft constraint (43) that couples the recovery objective to the slack $e$. The total constraint count is around a dozen and, crucially, is bounded independent of the number of CAVs — each additional detected VRU adds exactly one row of the form (29).
 
-To make the argument concrete rather than asymptotic, this repository provides a MATLAB script — [`main/qp_feasibility_demo.m`](main/qp_feasibility_demo.m) — that assembles this QP at every step of a 30-second simulation and reports per-step solve-time statistics. The core loop, stripped of parameter definitions and the mock state update, is:
+To make the argument concrete rather than asymptotic, this repository provides a MATLAB script — [`qp_feasibility_demo.m`](qp_feasibility_demo.m) — that assembles this QP at every step of a 30-second simulation and reports per-step solve-time statistics. The core loop, stripped of parameter definitions and the mock state update, is:
 
 ```matlab
 for k = 1:N
