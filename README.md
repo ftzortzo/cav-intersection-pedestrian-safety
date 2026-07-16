@@ -106,13 +106,12 @@ gives the explicit barrier condition for the axis-aligned ellipse:
 
 $$
 \begin{aligned}
-& 2v^2\left(\frac{\cos^2\theta}{a^2} + \frac{\sin^2\theta}{b^2}\right)
-+ \frac{2v^2}{\sigma}\left[-\frac{(x-x_p)\sin\theta}{a^2} + \frac{(y-y_p)\cos\theta}{b^2}\right] u_1 \\
-& + 2\left[\frac{(x-x_p)\cos\theta}{a^2} + \frac{(y-y_p)\sin\theta}{b^2}\right] u_2
-+ 4v\left[\frac{(x-x_p)\cos\theta}{a^2} + \frac{(y-y_p)\sin\theta}{b^2}\right] \\
+& 2v^2\left(\frac{\cos^2\theta}{a^2} + \frac{\sin^2\theta}{b^2}\right) + \frac{2v^2}{\sigma}\left[-\frac{(x-x_p)\sin\theta}{a^2} + \frac{(y-y_p)\cos\theta}{b^2}\right] u_1 \\
+& + 2\left[\frac{(x-x_p)\cos\theta}{a^2} + \frac{(y-y_p)\sin\theta}{b^2}\right] u_2 + 4v\left[\frac{(x-x_p)\cos\theta}{a^2} + \frac{(y-y_p)\sin\theta}{b^2}\right] \\
 & + \frac{(x-x_p)^2}{a^2} + \frac{(y-y_p)^2}{b^2} - 1 \ \ge \ 0.
 \end{aligned}
 $$
+
 
 The inequality is affine in $(u_1, u_2)$, and therefore can be embedded as a single half-space constraint in the emergency-mode QP (44), exactly as the disk condition (29).
 
