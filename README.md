@@ -14,7 +14,6 @@
 
 ---
 
-## Supplementary material for the paper Handling Uncertainty of Vulnerable Road Users in Coordinating Connected and Automated Vehicles at Signal-Free Intersections
 
 On this website, we provide supplementary material to facilitate the understanding of our paper, entitled "Handling Uncertainty of Vulnerable Road Users in Coordinating Connected and Automated Vehicles at Signal-Free Intersections." The website is divided into several sections, each of which provides additional information corresponding to specific parts of the paper to further clarify the presented concepts. 
 
