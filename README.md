@@ -12,121 +12,117 @@
 
 ---
 
-On this website, we provide supplementary material to facilitate the understanding of our paper, entitled *"Handling Uncertainty of Vulnerable Road Users in Coordinating Connected and Automated Vehicles at Signal-Free Intersections."* The website is divided into several sections, each of which provides additional information corresponding to specific parts of the paper to further clarify the presented concepts.
+On this website, we provide supplementary material to facilitate the understanding of our paper, entitled *"Handling Uncertainty of Vulnerable Road Users in Coordinating Connected and Automated Vehicles at Signal-Free Intersections."* The material is presented in the same order it appears in the paper, starting with the low-level controller in §3.1, moving through the alternative unsafe-set representations in §4.2, the real-time feasibility of the emergency-mode QP in §4.7, the simulation sc:enarios in §7, and finishing with the code repository.
 
-## Contents
+- [Identifying an unconstrained trajectory (§3.1)](#identifying-an-unconstrained-trajectory-31)
+- [Alternative unsafe-set representations (§4.2)](#alternative-unsafe-set-representations-42)
+- [Real-time feasibility of the emergency-mode QP (§4.7)](#real-time-feasibility-of-the-emergency-mode-qp-47)
+- [Simulation scenarios (§7)](#simulation-scenarios-7)
+- [Stress cases (§7.3)](#stress-cases-73)
+- [Robustness to perception noise (§7.4)](#robustness-to-perception-noise-74)
+- [Code repository (§7.5)](#code-repository-75)
+- [Reproducing the simulations](#reproducing-the-simulations)
+- [Citation](#citation)
 
-| Section | Where it appears in the paper |
-|---|---|
-| [Videos](#videos) | §3.1, §4.7, §7.1–§7.4 |
-| [Extended stress cases](#extended-stress-cases) | §7.3 |
-| [Alternative unsafe-set constructions](#alternative-unsafe-set-constructions) | §4.2 (Discussion 1) |
-| [Code layout](#code-layout) | §7.5 |
-| [Reproducing the simulations](#reproducing-the-simulations) | §7 |
-| [Citation](#citation) | — |
-| [License](#license) | — |
-| [Contact](#contact) | — |
+## Identifying an unconstrained trajectory (§3.1)
 
-## Videos
-<sub>Paper reference: §3.1 (feasibility sweep) · §4.7 (real-time QP) · §7.1–§7.4 (simulation scenarios)</sub>
+In Section 3.1, we introduce the two-layer optimal control problem that yields an unconstrained trajectory for each CAV. When a CAV enters the control zone, we iteratively sweep the exit time $t_i^f$ across the feasible interval $F_i(t_i^0) = [\underline{t}_i^f, \overline{t}_i^f]$, checking at each step whether the resulting cubic trajectory satisfies all state, control, and safety constraints. The video below demonstrates this sweep in real time — even for very small values of $\Delta t$, the entire procedure completes within milliseconds.
 
-*Recorded from the MATLAB / Simulink / RoadRunner co-simulation. Click any thumbnail to open on YouTube.*
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_5">
+    <img src="https://img.youtube.com/vi/YOUTUBE_ID_5/hqdefault.jpg" alt="Feasibility sweep over F_i(t_i^0)" width="720"/>
+  </a>
+</p>
 
-<table>
-<tr>
-<td width="50%" valign="top">
-<a href="https://www.youtube.com/watch?v=YOUTUBE_ID_1">
-  <img src="https://img.youtube.com/vi/YOUTUBE_ID_1/hqdefault.jpg" alt="Scenario 1: baseline" width="100%"/>
-</a>
-<br/>
-<b>Scenario 1 — Baseline</b> <sub>(§7.1)</sub><br/>
-<sub>No VRU present. The framework reduces to Malikopoulos et al. (2021); throughput / delay reference for the pedestrian scenarios.</sub>
-</td>
-<td width="50%" valign="top">
-<a href="https://www.youtube.com/watch?v=YOUTUBE_ID_2">
-  <img src="https://img.youtube.com/vi/YOUTUBE_ID_2/hqdefault.jpg" alt="Scenario 2: one pedestrian" width="100%"/>
-</a>
-<br/>
-<b>Scenario 2 — One pedestrian</b> <sub>(§7.1)</sub><br/>
-<sub>Pedestrian crosses the south leg east-to-west. Seven vehicles affected; vehicle 1 stops for ~8.3 s and is demoted in the crossing sequence.</sub>
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-<a href="https://www.youtube.com/watch?v=YOUTUBE_ID_3">
-  <img src="https://img.youtube.com/vi/YOUTUBE_ID_3/hqdefault.jpg" alt="Scenario 3: two pedestrians" width="100%"/>
-</a>
-<br/>
-<b>Scenario 3 — Two pedestrians</b> <sub>(§7.2)</sub><br/>
-<sub>A second pedestrian crosses the east leg. Vehicles 4 and 7 both enter emergency mode; the resequencing mechanism propagates the delay through the conflict structure.</sub>
-</td>
-<td width="50%" valign="top">
-<a href="https://www.youtube.com/watch?v=YOUTUBE_ID_4">
-  <img src="https://img.youtube.com/vi/YOUTUBE_ID_4/hqdefault.jpg" alt="Vehicle 4 conflict of constraints" width="100%"/>
-</a>
-<br/>
-<b>Vehicle 4 — Conflict of constraints</b> <sub>(§7.3)</sub><br/>
-<sub>The VRU barrier and road-boundary conditions become simultaneously active. The QP avoids collision but transiently breaches the soft margin $r$.</sub>
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-<a href="https://www.youtube.com/watch?v=YOUTUBE_ID_5">
-  <img src="https://img.youtube.com/vi/YOUTUBE_ID_5/hqdefault.jpg" alt="Feasibility sweep" width="100%"/>
-</a>
-<br/>
-<b>Feasibility sweep over $F_i(t_i^0)$</b> <sub>(§3.1)</sub><br/>
-<sub>Iterating $t_i^f = t_i^f + \Delta t$ across the feasible interval until an unconstrained cubic trajectory satisfies (2), (3), and (5).</sub>
-</td>
-<td width="50%" valign="top">
-<a href="https://www.youtube.com/watch?v=YOUTUBE_ID_6">
-  <img src="https://img.youtube.com/vi/YOUTUBE_ID_6/hqdefault.jpg" alt="Real-time QP performance" width="100%"/>
-</a>
-<br/>
-<b>Real-time QP performance</b> <sub>(§4.7)</sub><br/>
-<sub>Per-step solve time for the emergency-mode QP. Constant in the number of CAVs; adds one affine constraint per detected VRU.</sub>
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-<a href="https://www.youtube.com/watch?v=YOUTUBE_ID_7">
-  <img src="https://img.youtube.com/vi/YOUTUBE_ID_7/hqdefault.jpg" alt="Scenario 2 with sensor noise" width="100%"/>
-</a>
-<br/>
-<b>Scenario 2 with sensor noise</b> <sub>(§7.4)</sub><br/>
-<sub>HDL-32E-consistent perception error; the inflated certificate ($r + \varepsilon_p$) preserves safety.</sub>
-</td>
-<td width="50%" valign="top">
-<a href="https://www.youtube.com/watch?v=YOUTUBE_ID_8">
-  <img src="https://img.youtube.com/vi/YOUTUBE_ID_8/hqdefault.jpg" alt="Scenario 3 with sensor noise" width="100%"/>
-</a>
-<br/>
-<b>Scenario 3 with sensor noise</b> <sub>(§7.4)</sub><br/>
-<sub>Same qualitative behavior as the noise-free run; no structural change to the QP.</sub>
-</td>
-</tr>
-</table>
+## Alternative unsafe-set representations (§4.2)
 
-## Extended stress cases
-<sub>Paper reference: §7.3</sub>
-
-Cases that drive the emergency-mode QP toward the boundary of feasibility — where the VRU barrier (29), road-boundary conditions (38), steering-angle limit (40), and friction-circle constraint (53) become simultaneously active. Each case is documented on the [companion site](https://ftzortzo.github.io/cav-intersection-pedestrian-safety/#stress) with configuration, constraint-interaction pattern, and observed margin.
-
-## Alternative unsafe-set constructions
-<sub>Paper reference: §4.2 (Discussion 1)</sub>
-
-The paper models each VRU's unsafe set as a disk
+Section 4.2 models each VRU's unsafe set as a disk
 
 $$\mathcal{D} = \{(x,y) : (x - x_p)^2 + (y - y_p)^2 \le r^2\}$$
 
-for clarity, but the framework is agnostic: any set for which we can write a candidate barrier function $b(\mathbf{x}) \ge 0$ works. The companion site carries out the analogous CBF derivation for three alternative representations from the literature:
+primarily for clarity of exposition. The framework itself is agnostic to that choice: any set for which we can write a candidate barrier function $b(\mathbf{x}) \ge 0$ can be plugged into the same construction. To make this concrete, we carry out the analogous CBF derivation — candidate barrier function, relative-degree check, and HOCBF condition — for three alternative representations from the literature:
 
 - **Robust reachable set for a human agent** — Bajcsy et al. (2020)
 - **Per-pedestrian reachability set** — Schratter et al. (2019)
 - **Data-driven trajectory forecast** — Chen et al. (2023)
 
-## Code layout
-<sub>Paper reference: §7.5 (Additional results and open-source code)</sub>
+Each derivation is documented on the [companion site](https://ftzortzo.github.io/cav-intersection-pedestrian-safety/#alternative-sets).
+
+## Real-time feasibility of the emergency-mode QP (§4.7)
+
+Section 4.7 argues that the emergency-mode QP (44) is a small convex problem whose per-step solve time is essentially constant. All barrier conditions are affine in $(u_1, u_2)$, the decision variables are few, and the constraint count is bounded independent of the number of CAVs — each detected VRU adds only one affine constraint of the form (29). The following screencap records the solve time on our machine across a full simulation of Scenario 2, confirming that the per-step cost stays well within the $\Delta t = 0.02$&nbsp;s control step.
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_6">
+    <img src="https://img.youtube.com/vi/YOUTUBE_ID_6/hqdefault.jpg" alt="Per-step QP solve time" width="720"/>
+  </a>
+</p>
+
+## Simulation scenarios (§7)
+
+To validate the framework, Section 7 considers four scenarios at a four-leg intersection with a 100&nbsp;m control zone and a control step of $\Delta t = 0.02$&nbsp;s. Scenarios 1–3 share identical initial vehicle states, so any difference between them is attributable solely to the presence of the pedestrian(s).
+
+### Baseline (no VRU)
+
+The baseline is the reference for everything that follows: no VRU is present, so the framework reduces to that of Malikopoulos et al. (2021). It serves as the throughput and delay benchmark against which the pedestrian scenarios are compared.
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_1">
+    <img src="https://img.youtube.com/vi/YOUTUBE_ID_1/hqdefault.jpg" alt="Scenario 1: baseline" width="720"/>
+  </a>
+</p>
+
+### Scenario 2 — single pedestrian (§7.1)
+
+In Scenario 2, a pedestrian unexpectedly crosses the south leg of the intersection from east to west, interfering with seven vehicles. Vehicles 1 and 3 detect the pedestrian first and enter emergency mode; vehicle 1 eventually brakes to a full stop for roughly 8.3&nbsp;seconds, and the resequencing mechanism assigns it a low priority precisely because it is stopped — this prevents the stalled vehicle from obstructing others that are unaffected by the pedestrian. Once the pedestrian clears the road, vehicle 1 returns to its nominal path through recovery mode and is re-inserted into the crossing sequence.
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_2">
+    <img src="https://img.youtube.com/vi/YOUTUBE_ID_2/hqdefault.jpg" alt="Scenario 2: single pedestrian" width="720"/>
+  </a>
+</p>
+
+### Scenario 3 — two pedestrians (§7.2)
+
+Scenario 3 adds a second pedestrian on the east leg, moving north to south. The purpose is not to re-establish safety — that is already demonstrated in Scenario 2 — but to expose how the coordination layer responds to compounded disturbances. Vehicles 4 and 7 both enter emergency mode, and because they are conflicting vehicles of vehicle 1, the cascade keeps vehicle 1 at the lowest priority for 4.2&nbsp;seconds (compared with only 0.9&nbsp;s in Scenario 2). The additional pedestrian propagates through the conflict structure and lengthens the low-priority interval of an entirely different vehicle, illustrating that the resequencing mechanism reacts to the global state rather than to isolated interactions.
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_3">
+    <img src="https://img.youtube.com/vi/YOUTUBE_ID_3/hqdefault.jpg" alt="Scenario 3: two pedestrians" width="720"/>
+  </a>
+</p>
+
+## Stress cases (§7.3)
+
+Across Scenarios 2 and 3, vehicle 4 exhibits the smallest safety margin — 3.6 to 3.8&nbsp;m from the pedestrian, briefly breaching the $r = 4$&nbsp;m conservative disk though never entering the pedestrian's physical footprint. This happens because vehicle 4 approaches the south exit while the pedestrian is still on the lane, so the road-boundary barrier conditions and the VRU barrier condition become simultaneously active and compete for the available control authority. The video below shows this conflict of constraints in slow motion.
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_4">
+    <img src="https://img.youtube.com/vi/YOUTUBE_ID_4/hqdefault.jpg" alt="Vehicle 4 conflict of constraints" width="720"/>
+  </a>
+</p>
+
+Beyond vehicle 4, we ran additional cases that drive the emergency-mode QP toward the boundary of feasibility, where the VRU barrier (29), road-boundary conditions (38), steering-angle limit (40), and friction-circle constraint (53) become simultaneously active. Each case, with its configuration, constraint-interaction pattern, and observed margin, is documented on the [companion site](https://ftzortzo.github.io/cav-intersection-pedestrian-safety/#stress).
+
+## Robustness to perception noise (§7.4)
+
+To assess robustness, Section 7.4 repeats Scenarios 2 and 3 with the estimated VRU position corrupted by bounded perception noise consistent with the Velodyne HDL-32E specification (see Appendix A). We enforce the certificate on an inflated safe set of radius $r + \varepsilon_p$ (Proposition 7), which preserves collision avoidance for any measurement consistent with the error bound — without any structural change to the QP. In both scenarios, the trajectories under noise are visually near-indistinguishable from the noise-free case.
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_7">
+    <img src="https://img.youtube.com/vi/YOUTUBE_ID_7/hqdefault.jpg" alt="Scenario 2 with sensor noise" width="720"/>
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_8">
+    <img src="https://img.youtube.com/vi/YOUTUBE_ID_8/hqdefault.jpg" alt="Scenario 3 with sensor noise" width="720"/>
+  </a>
+</p>
+
+## Code repository (§7.5)
+
+The code that implements every part of the framework is organized to mirror the structure of the paper.
 
 ```
 docs/                       Companion website (served via GitHub Pages)
@@ -141,11 +137,8 @@ figures/                    Reproducibility for the paper's figures
 ```
 
 ## Reproducing the simulations
-<sub>Paper reference: §7 (Simulation results)</sub>
 
-**Requirements.** MATLAB R2024a or later, Simulink, RoadRunner with the RoadRunner Scenario add-on.
-
-**Quick start.** Setup and run instructions are documented per folder as the code is released. Start with `emergency_mode/` for the CBF-QP core, then `simulink_roadrunner/` for the full co-simulation.
+The full simulation environment requires MATLAB R2024a or later, Simulink, and RoadRunner with the RoadRunner Scenario add-on. Setup and run instructions are documented per folder as the code is released; for a first look at the emergency-mode controller in isolation, start with `emergency_mode/`, and then move to `simulink_roadrunner/` for the full co-simulation.
 
 ## Citation
 
