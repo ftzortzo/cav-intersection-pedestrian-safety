@@ -14,9 +14,9 @@
 
 ---
 
-## Abstract
+## Supplementary material for the paper Handling Uncertainty of Vulnerable Road Users in Coordinating Connected and Automated Vehicles at Signal-Free Intersections
 
-We provide a theoretical framework for the coordination of connected and automated vehicles (CAVs) at signal-free intersections, accounting for the unexpected presence of vulnerable road users (VRUs) such as bicyclists and pedestrians who violate traffic rules. We introduce a controller that determines optimal unconstrained trajectories for the CAVs and sufficient certificates for each CAV to guarantee constraint satisfaction. When a CAV's sensors detect a VRU, an emergency mode is activated that imposes certificates related to an unsafe set in the VRU's vicinity, and a re-planning mechanism is invoked so that all other CAVs in the control zone can adjust to the disruption. We validate the approach through simulations in MATLAB, Simulink, and RoadRunner.
+On this website, we provide supplementary material to facilitate the understanding of our paper, entitled "Handling Uncertainty of Vulnerable Road Users in Coordinating Connected and Automated Vehicles at Signal-Free Intersections." The website is divided into several sections, each of which provides additional information corresponding to specific parts of the paper to further clarify the presented concepts. 
 
 ## Contributions
 
