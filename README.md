@@ -180,9 +180,6 @@ Since $v$ is a state variable, this makes $b_{\text{ell},\phi}$ explicitly $v$-d
 
 Analogous constructions for reachability-based and data-driven trajectory-forecast unsafe sets follow the same pattern: define $b(\mathbf{x}_b) \ge 0$ so that its zero-superlevel set is the exterior of the desired unsafe region, verify the relative degree, and assemble the HOCBF condition.
 
-
-## Real-time feasibility of the emergency-mode QP (§4.7)
-
 ## Real-time feasibility of the emergency-mode QP (§4.7)
 
 Section 4.7 argues that the emergency-mode QP (44) is a small convex problem whose per-step solve time is essentially constant. The decision vector has just three entries — the two control inputs $u_1, u_2$ and the CLF slack $e$ — and every constraint is affine in this vector:
