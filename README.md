@@ -10,13 +10,6 @@
   <sub>Preprint &nbsp;·&nbsp; <i>Automatica</i> &nbsp;·&nbsp; 2026</sub>
 </p>
 
-<p align="center">
-  <a href="#videos"><img src="https://img.shields.io/badge/videos-YouTube-red?style=flat-square" alt="Videos"/></a>
-  <a href="#code-layout"><img src="https://img.shields.io/badge/code-MATLAB%20%2B%20Simulink%20%2B%20RoadRunner-blue?style=flat-square" alt="Code"/></a>
-  <a href="#citation"><img src="https://img.shields.io/badge/cite-BibTeX-green?style=flat-square" alt="Cite"/></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square" alt="License"/></a>
-</p>
-
 
 
 ---
