@@ -267,7 +267,6 @@ Across Scenarios 2 and 3, vehicle 4 exhibits the smallest safety margin — 3.6 
   </a>
 </p>
 
-Beyond vehicle 4, we ran additional cases that drive the emergency-mode QP toward the boundary of feasibility, where the VRU barrier (29), road-boundary conditions (38), steering-angle limit (40), and friction-circle constraint (53) become simultaneously active. Each case, with its configuration, constraint-interaction pattern, and observed margin, is documented on the [companion site](https://ftzortzo.github.io/cav-intersection-pedestrian-safety/#stress).
 
 ## Robustness to perception noise (§7.4)
 
