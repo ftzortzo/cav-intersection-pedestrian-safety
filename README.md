@@ -34,9 +34,7 @@ In Section 3.1, we introduce the two-layer optimal control problem that yields a
   </a>
 </p>
 
-## Alternative unsafe-set representations (§4.2)
-
-## Ellipsoidal unsafe set — CBF derivation
+## Alternative unsafe-set representations | Ellipsoidal unsafe set — CBF derivation (§4.2)
 
 Section 4.2 of the paper models each VRU's unsafe set as a disk
 
