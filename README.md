@@ -276,13 +276,11 @@ The full simulation environment requires MATLAB R2024a or later, Simulink, and R
 ## Citation
 
 ```bibtex
-@article{tzortzoglou2026vru,
-  title   = {Handling Uncertainty of Vulnerable Road Users in Coordinating
-             Connected and Automated Vehicles at Signal-Free Intersections},
-  author  = {Tzortzoglou, Filippos N. and Malikopoulos, Andreas A.},
-  journal = {Automatica},
-  year    = {2026},
-  note    = {Preprint}
+@article{tzortzoglou2025handling,
+  title={Handling Pedestrian Uncertainty in Coordinating Autonomous Vehicles at Signal-Free Intersections},
+  author={Tzortzoglou, Filippos N and Malikopoulos, Andreas A},
+  journal={arXiv preprint arXiv:2505.06465},
+  year={2025}
 }
 ```
 
