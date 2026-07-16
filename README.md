@@ -29,8 +29,8 @@ On this website, we provide supplementary material to facilitate the understandi
 In Section 3.1, we introduce the two-layer optimal control problem that yields an unconstrained trajectory for each CAV. When a CAV enters the control zone, we iteratively sweep the exit time $t_i^f$ across the feasible interval $F_i(t_i^0) = [\underline{t}_i^f, \overline{t}_i^f]$, checking at each step whether the resulting cubic trajectory satisfies all state, control, and safety constraints. The video below demonstrates this sweep in real time — even for very small values of $\Delta t$, the entire procedure completes within milliseconds.
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_5">
-    <img src="https://img.youtube.com/vi/YOUTUBE_ID_5/hqdefault.jpg" alt="Feasibility sweep over F_i(t_i^0)" width="720"/>
+  <a href="https://youtu.be/x330OcMrvow">
+    <img src="https://youtu.be/x330OcMrvow/hqdefault.jpg" alt="Feasibility sweep over F_i(t_i^0)" width="720"/>
   </a>
 </p>
 
