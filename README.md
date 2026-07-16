@@ -137,7 +137,7 @@ $$\tilde{x} = (x - x_p)\cos\phi + (y - y_p)\sin\phi, \qquad \tilde{y} = -(x - x_
 
 The rotated ellipse is
 
-$$\mathcal{E}_\phi = \lbrace\{(x,y) : \frac{\tilde{x}^2}{a^2} + \frac{\tilde{y}^2}{b^2} \le 1\rbrace.$$
+$$\mathcal{E}_\phi = \lbrace\(x,y) : \frac{\tilde{x}^2}{a^2} + \frac{\tilde{y}^2}{b^2} \le 1\rbrace.$$
 
 Introducing the displacement vector $\mathbf{d} = [x - x_p,\ y - y_p]^T$ and the symmetric positive-definite matrix
 
