@@ -232,8 +232,8 @@ To validate the framework, Section 7 considers four scenarios at a four-leg inte
 The baseline is the reference for everything that follows: no VRU is present, so the framework reduces to that of Malikopoulos et al. (2021). It serves as the throughput and delay benchmark against which the pedestrian scenarios are compared.
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_1">
-    <img src="https://img.youtube.com/vi/YOUTUBE_ID_1/hqdefault.jpg" alt="Scenario 1: baseline" width="720"/>
+  <a href="https://www.youtube.com/watch?v=d33wKAMWDyI">
+    <img src="https://img.youtube.com/vi/d33wKAMWDyI/hqdefault.jpg" alt="Scenario 1: baseline" width="720"/>
   </a>
 </p>
 
@@ -242,8 +242,8 @@ The baseline is the reference for everything that follows: no VRU is present, so
 In Scenario 2, a pedestrian unexpectedly crosses the south leg of the intersection from east to west, interfering with seven vehicles. Vehicles 1 and 3 detect the pedestrian first and enter emergency mode; vehicle 1 eventually brakes to a full stop for roughly 8.3&nbsp;seconds, and the resequencing mechanism assigns it a low priority precisely because it is stopped — this prevents the stalled vehicle from obstructing others that are unaffected by the pedestrian. Once the pedestrian clears the road, vehicle 1 returns to its nominal path through recovery mode and is re-inserted into the crossing sequence.
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_2">
-    <img src="https://img.youtube.com/vi/YOUTUBE_ID_2/hqdefault.jpg" alt="Scenario 2: single pedestrian" width="720"/>
+  <a href="https://www.youtube.com/watch?v=_EYUg6sCUTA">
+    <img src="https://img.youtube.com/vi/_EYUg6sCUTA/hqdefault.jpg" alt="Scenario 2: single pedestrian" width="720"/>
   </a>
 </p>
 
@@ -252,8 +252,8 @@ In Scenario 2, a pedestrian unexpectedly crosses the south leg of the intersecti
 Scenario 3 adds a second pedestrian on the east leg, moving north to south. The purpose is not to re-establish safety — that is already demonstrated in Scenario 2 — but to expose how the coordination layer responds to compounded disturbances. Vehicles 4 and 7 both enter emergency mode, and because they are conflicting vehicles of vehicle 1, the cascade keeps vehicle 1 at the lowest priority for 4.2&nbsp;seconds (compared with only 0.9&nbsp;s in Scenario 2). The additional pedestrian propagates through the conflict structure and lengthens the low-priority interval of an entirely different vehicle, illustrating that the resequencing mechanism reacts to the global state rather than to isolated interactions.
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=YOUTUBE_ID_3">
-    <img src="https://img.youtube.com/vi/YOUTUBE_ID_3/hqdefault.jpg" alt="Scenario 3: two pedestrians" width="720"/>
+  <a href="https://www.youtube.com/watch?v=EounKWgiO_0">
+    <img src="https://img.youtube.com/vi/EounKWgiO_0/hqdefault.jpg" alt="Scenario 3: two pedestrians" width="720"/>
   </a>
 </p>
 
