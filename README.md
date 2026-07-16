@@ -82,23 +82,21 @@ $$L_{g_1} b_{\text{ell}} = 0, \qquad L_{g_2} b_{\text{ell}} = 0,$$
 
 confirming that neither control input appears after a single differentiation. Hence $b_{\text{ell}}$ has relative degree two with respect to the bicycle dynamics, and — as in the paper's disk case — the second-order HOCBF framework of §4.3 must be invoked.
 
-**Second-order Lie derivatives.** Taking the gradient of $L_f b_{\text{ell}}$,
+**Second-order Lie derivatives.** Taking partial derivatives of $L_f b_{\text{ell}}$ with respect to each state,
 
-$$\nabla L_f b_{\text{ell}} =
-\begin{bmatrix}
-\dfrac{2v\cos\theta}{a^2} \\[4pt]
-\dfrac{2v\sin\theta}{b^2} \\[6pt]
-2v\left[-\dfrac{(x-x_p)\sin\theta}{a^2} + \dfrac{(y-y_p)\cos\theta}{b^2}\right] \\[10pt]
-\dfrac{2(x-x_p)\cos\theta}{a^2} + \dfrac{2(y-y_p)\sin\theta}{b^2}
-\end{bmatrix}^T .$$
+$$\frac{\partial L_f b_{\text{ell}}}{\partial x} = \frac{2v\cos\theta}{a^2}, \qquad \frac{\partial L_f b_{\text{ell}}}{\partial y} = \frac{2v\sin\theta}{b^2},$$
 
-Combining with $f$, $g_1$, and $g_2$ yields
+$$\frac{\partial L_f b_{\text{ell}}}{\partial \theta} = 2v\left[-\frac{(x-x_p)\sin\theta}{a^2} + \frac{(y-y_p)\cos\theta}{b^2}\right],$$
 
-$$L_f^2 b_{\text{ell}} = \nabla L_f b_{\text{ell}} \cdot f = 2v^2\left(\frac{\cos^2\theta}{a^2} + \frac{\sin^2\theta}{b^2}\right),$$
+$$\frac{\partial L_f b_{\text{ell}}}{\partial v} = \frac{2(x-x_p)\cos\theta}{a^2} + \frac{2(y-y_p)\sin\theta}{b^2}.$$
 
-$$L_{g_1} L_f b_{\text{ell}} = \nabla L_f b_{\text{ell}} \cdot g_1 = \frac{2v^2}{\sigma}\left[-\frac{(x-x_p)\sin\theta}{a^2} + \frac{(y-y_p)\cos\theta}{b^2}\right],$$
+Combining these with $f$, $g_1$, and $g_2$ yields
 
-$$L_{g_2} L_f b_{\text{ell}} = \nabla L_f b_{\text{ell}} \cdot g_2 = \frac{2(x-x_p)\cos\theta}{a^2} + \frac{2(y-y_p)\sin\theta}{b^2}.$$
+$$L_f^2 b_{\text{ell}} = 2v^2\left(\frac{\cos^2\theta}{a^2} + \frac{\sin^2\theta}{b^2}\right),$$
+
+$$L_{g_1} L_f b_{\text{ell}} = \frac{2v^2}{\sigma}\left[-\frac{(x-x_p)\sin\theta}{a^2} + \frac{(y-y_p)\cos\theta}{b^2}\right],$$
+
+$$L_{g_2} L_f b_{\text{ell}} = \frac{2(x-x_p)\cos\theta}{a^2} + \frac{2(y-y_p)\sin\theta}{b^2}.$$
 
 **HOCBF condition.** Substituting into the second-order barrier condition (28) with class-$\mathcal{K}$ functions chosen as the identity,
 
@@ -109,9 +107,9 @@ gives the explicit barrier condition for the axis-aligned ellipse:
 $$
 \begin{aligned}
 & 2v^2\left(\frac{\cos^2\theta}{a^2} + \frac{\sin^2\theta}{b^2}\right)
-+ \frac{2v^2}{\sigma}\left[-\frac{(x-x_p)\sin\theta}{a^2} + \frac{(y-y_p)\cos\theta}{b^2}\right] u_1 \\[6pt]
++ \frac{2v^2}{\sigma}\left[-\frac{(x-x_p)\sin\theta}{a^2} + \frac{(y-y_p)\cos\theta}{b^2}\right] u_1 \\
 & + 2\left[\frac{(x-x_p)\cos\theta}{a^2} + \frac{(y-y_p)\sin\theta}{b^2}\right] u_2
-+ 4v\left[\frac{(x-x_p)\cos\theta}{a^2} + \frac{(y-y_p)\sin\theta}{b^2}\right] \\[6pt]
++ 4v\left[\frac{(x-x_p)\cos\theta}{a^2} + \frac{(y-y_p)\sin\theta}{b^2}\right] \\
 & + \frac{(x-x_p)^2}{a^2} + \frac{(y-y_p)^2}{b^2} - 1 \ \ge \ 0.
 \end{aligned}
 $$
