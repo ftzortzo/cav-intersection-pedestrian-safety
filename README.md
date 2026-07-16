@@ -10,23 +10,25 @@
   <sub>Preprint &nbsp;·&nbsp; <i>Automatica</i> &nbsp;·&nbsp; 2026</sub>
 </p>
 
-
-
 ---
 
+On this website, we provide supplementary material to facilitate the understanding of our paper, entitled *"Handling Uncertainty of Vulnerable Road Users in Coordinating Connected and Automated Vehicles at Signal-Free Intersections."* The website is divided into several sections, each of which provides additional information corresponding to specific parts of the paper to further clarify the presented concepts.
 
-On this website, we provide supplementary material to facilitate the understanding of our paper, entitled "Handling Uncertainty of Vulnerable Road Users in Coordinating Connected and Automated Vehicles at Signal-Free Intersections." The website is divided into several sections, each of which provides additional information corresponding to specific parts of the paper to further clarify the presented concepts. 
+## Contents
 
-## Contributions
-
-*From Section 1.3 of the paper:*
-
-1. **Relaxed standstill assumption.** Expanding the approach of Sabouni et al. (2024) to allow CAVs to maintain a *nonzero* standstill distance $\tilde{\gamma}$ when arriving at the intersection from intersecting paths (Lemma 1, Theorem 1).
-2. **VRU-aware controller.** Introducing a controller that accounts for VRU unpredictability at signal-free intersections operated by CAVs, via a HOCBF condition on the VRU unsafe set together with lane-boundary and steering-limit certificates (Propositions 3–5).
-3. **Resequencing–replanning.** Incorporating an algorithm that safely re-plans the trajectories of all CAVs in the control zone when some deviate from their reference trajectories during the critical event of VRU presence (Section 5).
-4. **Noise and higher-fidelity dynamics.** Extending the framework to account for measurement noise and vehicle dynamics with higher fidelity, including velocity-dependent longitudinal resistance and a friction-circle SOCP constraint (Section 6).
+| Section | Where it appears in the paper |
+|---|---|
+| [Videos](#videos) | §3.1, §4.7, §7.1–§7.4 |
+| [Extended stress cases](#extended-stress-cases) | §7.3 |
+| [Alternative unsafe-set constructions](#alternative-unsafe-set-constructions) | §4.2 (Discussion 1) |
+| [Code layout](#code-layout) | §7.5 |
+| [Reproducing the simulations](#reproducing-the-simulations) | §7 |
+| [Citation](#citation) | — |
+| [License](#license) | — |
+| [Contact](#contact) | — |
 
 ## Videos
+<sub>Paper reference: §3.1 (feasibility sweep) · §4.7 (real-time QP) · §7.1–§7.4 (simulation scenarios)</sub>
 
 *Recorded from the MATLAB / Simulink / RoadRunner co-simulation. Click any thumbnail to open on YouTube.*
 
@@ -37,7 +39,7 @@ On this website, we provide supplementary material to facilitate the understandi
   <img src="https://img.youtube.com/vi/YOUTUBE_ID_1/hqdefault.jpg" alt="Scenario 1: baseline" width="100%"/>
 </a>
 <br/>
-<b>Scenario 1 — Baseline</b><br/>
+<b>Scenario 1 — Baseline</b> <sub>(§7.1)</sub><br/>
 <sub>No VRU present. The framework reduces to Malikopoulos et al. (2021); throughput / delay reference for the pedestrian scenarios.</sub>
 </td>
 <td width="50%" valign="top">
@@ -105,11 +107,13 @@ On this website, we provide supplementary material to facilitate the understandi
 </tr>
 </table>
 
-## Extended stress cases <sub>(§7.3)</sub>
+## Extended stress cases
+<sub>Paper reference: §7.3</sub>
 
 Cases that drive the emergency-mode QP toward the boundary of feasibility — where the VRU barrier (29), road-boundary conditions (38), steering-angle limit (40), and friction-circle constraint (53) become simultaneously active. Each case is documented on the [companion site](https://ftzortzo.github.io/cav-intersection-pedestrian-safety/#stress) with configuration, constraint-interaction pattern, and observed margin.
 
-## Alternative unsafe-set constructions <sub>(§4.2, Discussion 1)</sub>
+## Alternative unsafe-set constructions
+<sub>Paper reference: §4.2 (Discussion 1)</sub>
 
 The paper models each VRU's unsafe set as a disk
 
@@ -122,6 +126,7 @@ for clarity, but the framework is agnostic: any set for which we can write a can
 - **Data-driven trajectory forecast** — Chen et al. (2023)
 
 ## Code layout
+<sub>Paper reference: §7.5 (Additional results and open-source code)</sub>
 
 ```
 docs/                       Companion website (served via GitHub Pages)
@@ -136,6 +141,7 @@ figures/                    Reproducibility for the paper's figures
 ```
 
 ## Reproducing the simulations
+<sub>Paper reference: §7 (Simulation results)</sub>
 
 **Requirements.** MATLAB R2024a or later, Simulink, RoadRunner with the RoadRunner Scenario add-on.
 
