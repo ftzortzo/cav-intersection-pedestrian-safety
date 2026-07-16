@@ -58,7 +58,7 @@ with state $\mathbf{x}_b = [x, y, \theta, v]^T$, drift field $f(\mathbf{x}_b) = 
 
 Let the pedestrian be located at $(x_p, y_p)$, and let $a, b > 0$ be the semi-axes of the elliptical unsafe set. Consider the axis-aligned ellipse
 
-$$\mathcal{E} = \left\{(x, y) : \frac{(x - x_p)^2}{a^2} + \frac{(y - y_p)^2}{b^2} \le 1\right\},$$
+$$\mathcal{E} =  \lbrace(x, y) : \frac{(x - x_p)^2}{a^2} + \frac{(y - y_p)^2}{b^2} \le 1\rbrace,$$
 
 and define the candidate barrier function
 
