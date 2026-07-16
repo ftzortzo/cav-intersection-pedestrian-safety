@@ -36,17 +36,155 @@ In Section 3.1, we introduce the two-layer optimal control problem that yields a
 
 ## Alternative unsafe-set representations (§4.2)
 
-Section 4.2 models each VRU's unsafe set as a disk
+## Ellipsoidal unsafe set — CBF derivation
+
+Section 4.2 of the paper models each VRU's unsafe set as a disk
 
 $$\mathcal{D} = \{(x,y) : (x - x_p)^2 + (y - y_p)^2 \le r^2\}$$
 
-primarily for clarity of exposition. The framework itself is agnostic to that choice: any set for which we can write a candidate barrier function $b(\mathbf{x}) \ge 0$ can be plugged into the same construction. To make this concrete, we carry out the analogous CBF derivation — candidate barrier function, relative-degree check, and HOCBF condition — for three alternative representations from the literature:
+primarily for clarity of exposition. The framework itself is agnostic to that choice: any set for which we can write a candidate barrier function $b(\mathbf{x}_b) \ge 0$ can be plugged into the same construction. In this note, we carry out the analogous derivation for an **ellipsoidal** unsafe set, whose semi-axes can be tuned to encode physical structure that a disk cannot — for instance, extending the set along the pedestrian's walking direction (accounting for their expected motion), shortening it perpendicular to that direction (where the pedestrian is less likely to move), or growing it with the vehicle's approach speed.
 
-- **Robust reachable set for a human agent** — Bajcsy et al. (2020)
-- **Per-pedestrian reachability set** — Schratter et al. (2019)
-- **Data-driven trajectory forecast** — Chen et al. (2023)
+We follow exactly the four steps of Proposition 3 in the paper: (i) define the candidate barrier function, (ii) verify its relative degree with respect to the dynamics, (iii) compute the second-order Lie derivatives, and (iv) assemble the HOCBF condition. As a sanity check, we then show that setting the two semi-axes equal recovers the paper's disk condition (29) exactly.
 
-Each derivation is documented on the [companion site](https://ftzortzo.github.io/cav-intersection-pedestrian-safety/#alternative-sets).
+### Setup
+
+Recall the control-affine bicycle model (20)–(21) of the paper:
+
+$$\dot{x} = v\cos\theta, \quad \dot{y} = v\sin\theta, \quad \dot{\theta} = \frac{v}{\sigma}\,u_1, \quad \dot{v} = u_2,$$
+
+with state $\mathbf{x}_b = [x, y, \theta, v]^T$, drift field $f(\mathbf{x}_b) = [v\cos\theta, v\sin\theta, 0, 0]^T$, and control vector fields $g_1(\mathbf{x}_b) = [0, 0, v/\sigma, 0]^T$, $g_2(\mathbf{x}_b) = [0, 0, 0, 1]^T$.
+
+### Axis-aligned ellipse
+
+Let the pedestrian be located at $(x_p, y_p)$, and let $a, b > 0$ be the semi-axes of the elliptical unsafe set. Consider the axis-aligned ellipse
+
+$$\mathcal{E} = \left\{(x, y) : \frac{(x - x_p)^2}{a^2} + \frac{(y - y_p)^2}{b^2} \le 1\right\},$$
+
+and define the candidate barrier function
+
+$$b_{\text{ell}}(\mathbf{x}_b) = \frac{(x - x_p)^2}{a^2} + \frac{(y - y_p)^2}{b^2} - 1.$$
+
+The associated safe set is the zero-superlevel set
+
+$$\mathcal{S}_{\text{ell}} = \{\mathbf{x}_b \in \mathbb{R}^4 : b_{\text{ell}}(\mathbf{x}_b) \ge 0\},$$
+
+which is the exterior of $\mathcal{E}$.
+
+**Relative degree.** The gradient of $b_{\text{ell}}$ with respect to $\mathbf{x}_b$ is
+
+$$\nabla b_{\text{ell}}(\mathbf{x}_b) = \left[\frac{2(x - x_p)}{a^2},\ \frac{2(y - y_p)}{b^2},\ 0,\ 0\right].$$
+
+The first-order Lie derivatives are
+
+$$L_f b_{\text{ell}} = \nabla b_{\text{ell}} \cdot f = \frac{2v(x - x_p)\cos\theta}{a^2} + \frac{2v(y - y_p)\sin\theta}{b^2},$$
+
+$$L_{g_1} b_{\text{ell}} = 0, \qquad L_{g_2} b_{\text{ell}} = 0,$$
+
+confirming that neither control input appears after a single differentiation. Hence $b_{\text{ell}}$ has relative degree two with respect to the bicycle dynamics, and — as in the paper's disk case — the second-order HOCBF framework of §4.3 must be invoked.
+
+**Second-order Lie derivatives.** Taking the gradient of $L_f b_{\text{ell}}$,
+
+$$\nabla L_f b_{\text{ell}} =
+\begin{bmatrix}
+\dfrac{2v\cos\theta}{a^2} \\[4pt]
+\dfrac{2v\sin\theta}{b^2} \\[6pt]
+2v\left[-\dfrac{(x-x_p)\sin\theta}{a^2} + \dfrac{(y-y_p)\cos\theta}{b^2}\right] \\[10pt]
+\dfrac{2(x-x_p)\cos\theta}{a^2} + \dfrac{2(y-y_p)\sin\theta}{b^2}
+\end{bmatrix}^T .$$
+
+Combining with $f$, $g_1$, and $g_2$ yields
+
+$$L_f^2 b_{\text{ell}} = \nabla L_f b_{\text{ell}} \cdot f = 2v^2\left(\frac{\cos^2\theta}{a^2} + \frac{\sin^2\theta}{b^2}\right),$$
+
+$$L_{g_1} L_f b_{\text{ell}} = \nabla L_f b_{\text{ell}} \cdot g_1 = \frac{2v^2}{\sigma}\left[-\frac{(x-x_p)\sin\theta}{a^2} + \frac{(y-y_p)\cos\theta}{b^2}\right],$$
+
+$$L_{g_2} L_f b_{\text{ell}} = \nabla L_f b_{\text{ell}} \cdot g_2 = \frac{2(x-x_p)\cos\theta}{a^2} + \frac{2(y-y_p)\sin\theta}{b^2}.$$
+
+**HOCBF condition.** Substituting into the second-order barrier condition (28) with class-$\mathcal{K}$ functions chosen as the identity,
+
+$$L_f^2 b_{\text{ell}} + L_{g_1} L_f b_{\text{ell}}\, u_1 + L_{g_2} L_f b_{\text{ell}}\, u_2 + 2 L_f b_{\text{ell}} + b_{\text{ell}} \ge 0,$$
+
+gives the explicit barrier condition for the axis-aligned ellipse:
+
+$$
+\begin{aligned}
+& 2v^2\left(\frac{\cos^2\theta}{a^2} + \frac{\sin^2\theta}{b^2}\right)
++ \frac{2v^2}{\sigma}\left[-\frac{(x-x_p)\sin\theta}{a^2} + \frac{(y-y_p)\cos\theta}{b^2}\right] u_1 \\[6pt]
+& + 2\left[\frac{(x-x_p)\cos\theta}{a^2} + \frac{(y-y_p)\sin\theta}{b^2}\right] u_2
++ 4v\left[\frac{(x-x_p)\cos\theta}{a^2} + \frac{(y-y_p)\sin\theta}{b^2}\right] \\[6pt]
+& + \frac{(x-x_p)^2}{a^2} + \frac{(y-y_p)^2}{b^2} - 1 \ \ge \ 0.
+\end{aligned}
+$$
+
+The inequality is affine in $(u_1, u_2)$, and therefore can be embedded as a single half-space constraint in the emergency-mode QP (44), exactly as the disk condition (29).
+
+**Sanity check — reduction to the disk.** Setting $a = b = r$, every occurrence of $\cos^2\theta / a^2 + \sin^2\theta / b^2$ collapses to $1/r^2$, and every bracketed expression collapses to its unweighted disk analogue. Multiplying the condition through by $r^2$, we recover
+
+$$
+\begin{aligned}
+& 2v^2 + \frac{2v^2}{\sigma}\left[-(x-x_p)\sin\theta + (y-y_p)\cos\theta\right] u_1 \\
+& + 2\left[(x-x_p)\cos\theta + (y-y_p)\sin\theta\right] u_2 \\
+& + 4v\left[(x-x_p)\cos\theta + (y-y_p)\sin\theta\right] \\
+& + (x-x_p)^2 + (y-y_p)^2 - r^2 \ \ge \ 0,
+\end{aligned}
+$$
+
+which is exactly the paper's HOCBF condition (29).
+
+### Rotated ellipse
+
+To align the ellipse with the pedestrian's walking direction, let $\phi$ denote the orientation angle of the major axis with respect to the global $x$-axis, and define the rotated coordinates
+
+$$\tilde{x} = (x - x_p)\cos\phi + (y - y_p)\sin\phi, \qquad \tilde{y} = -(x - x_p)\sin\phi + (y - y_p)\cos\phi.$$
+
+The rotated ellipse is
+
+$$\mathcal{E}_\phi = \left\{(x,y) : \frac{\tilde{x}^2}{a^2} + \frac{\tilde{y}^2}{b^2} \le 1\right\}.$$
+
+Introducing the displacement vector $\mathbf{d} = [x - x_p,\ y - y_p]^T$ and the symmetric positive-definite matrix
+
+$$P = R(\phi)^T \begin{pmatrix} 1/a^2 & 0 \\ 0 & 1/b^2 \end{pmatrix} R(\phi), \qquad R(\phi) = \begin{pmatrix} \cos\phi & \sin\phi \\ -\sin\phi & \cos\phi \end{pmatrix},$$
+
+the candidate barrier function takes the compact quadratic form
+
+$$b_{\text{ell},\phi}(\mathbf{x}_b) = \mathbf{d}^T P\, \mathbf{d} - 1.$$
+
+Writing $\mathbf{e}_\theta = [\cos\theta, \sin\theta]^T$ for the heading unit vector and $\mathbf{e}_\theta^\perp = [-\sin\theta, \cos\theta]^T$, the derivation proceeds exactly as before. The first-order Lie derivative is
+
+$$L_f b_{\text{ell},\phi} = 2v\, \mathbf{d}^T P\, \mathbf{e}_\theta,$$
+
+and $L_{g_1} b_{\text{ell},\phi} = L_{g_2} b_{\text{ell},\phi} = 0$, so the relative degree is again two. The second-order Lie derivatives are
+
+$$L_f^2 b_{\text{ell},\phi} = 2v^2\, \mathbf{e}_\theta^T P\, \mathbf{e}_\theta,$$
+
+$$L_{g_1} L_f b_{\text{ell},\phi} = \frac{2v^2}{\sigma}\, \mathbf{d}^T P\, \mathbf{e}_\theta^\perp, \qquad L_{g_2} L_f b_{\text{ell},\phi} = 2\, \mathbf{d}^T P\, \mathbf{e}_\theta,$$
+
+and the HOCBF condition becomes
+
+$$2v^2\, \mathbf{e}_\theta^T P\, \mathbf{e}_\theta \ +\ \frac{2v^2}{\sigma}\, \mathbf{d}^T P\, \mathbf{e}_\theta^\perp\, u_1 \ +\ 2\, \mathbf{d}^T P\, \mathbf{e}_\theta\, u_2 \ +\ 4v\, \mathbf{d}^T P\, \mathbf{e}_\theta \ +\ \mathbf{d}^T P\, \mathbf{d} - 1 \ \ge \ 0.$$
+
+Setting $P = (1/r^2)\, I$ recovers the paper's disk condition (29) after multiplying through by $r^2$; setting $\phi = 0$ recovers the axis-aligned expression above.
+
+### Parametrizing the semi-axes
+
+Because the barrier condition is affine in $(u_1, u_2)$ regardless of the numerical values of $a$, $b$, and $\phi$, we can update these parameters at each control step without changing the structure of the QP. This makes the ellipse a natural vehicle for encoding physical structure that a disk cannot represent. Three parametrizations are worth highlighting.
+
+**Orientation from the pedestrian's walking direction.** Let $\phi_p$ denote the pedestrian's heading estimated from consecutive detections. Setting $\phi = \phi_p$ orients the ellipse's major axis along the walking direction, which extends the unsafe region in the direction the pedestrian is expected to move and contracts it laterally — encoding, in the geometry itself, the fact that pedestrians rarely change direction abruptly.
+
+**Semi-axes from the pedestrian's speed.** Let $v_p$ denote the pedestrian's speed. A common choice is
+
+$$a = a_0 + \kappa_a v_p, \qquad b = b_0,$$
+
+with $a_0, b_0, \kappa_a > 0$. This grows the ellipse along the walking direction in proportion to how fast the pedestrian is moving, and matches the "reaction reachable set" intuition used by Bajcsy et&nbsp;al. (2020) and Schratter et&nbsp;al. (2019). The lateral semi-axis $b_0$ is kept fixed and typically small, encoding the vehicle footprint plus a lateral safety margin.
+
+**Semi-axes from the vehicle's approach speed.** Alternatively (or additionally), the semi-axes can scale with the vehicle's own speed $v$ to reflect its longer stopping distance at higher speeds:
+
+$$a = a_0 + \kappa_v v, \qquad b = b_0 + \kappa_v' v.$$
+
+Since $v$ is a state variable, this makes $b_{\text{ell},\phi}$ explicitly $v$-dependent, and the Lie derivative expressions above must be augmented with terms of the form $\partial_v b_{\text{ell},\phi}$. In practice, however, we treat the semi-axes as parameters held constant across a single control step $\Delta t$: this preserves the derivation as stated and updates $a, b$ from the measured speed at each step. The resulting closed-loop behavior is that the ellipse "breathes" with speed while the QP remains a small, static-parameter convex problem, which is important for real-time feasibility (§4.7).
+
+Analogous constructions for reachability-based and data-driven trajectory-forecast unsafe sets follow the same pattern: define $b(\mathbf{x}_b) \ge 0$ so that its zero-superlevel set is the exterior of the desired unsafe region, verify the relative degree, and assemble the HOCBF condition.
+
 
 ## Real-time feasibility of the emergency-mode QP (§4.7)
 
