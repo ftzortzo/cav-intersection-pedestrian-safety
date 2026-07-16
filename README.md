@@ -30,7 +30,7 @@ In Section 3.1, we introduce the two-layer optimal control problem that yields a
 
 <p align="center">
   <a href="https://youtu.be/x330OcMrvow">
-    <img src="https://youtu.be/x330OcMrvow/hqdefault.jpg" alt="Feasibility sweep over F_i(t_i^0)" width="720"/>
+    <img src="https://img.youtube.com/vi/x330OcMrvow/hqdefault.jpg" alt="Feasibility sweep over F_i(t_i^0)" width="720"/>
   </a>
 </p>
 
