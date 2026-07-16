@@ -17,9 +17,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square" alt="License"/></a>
 </p>
 
-<p align="center">
-  <b>&#127760; <a href="https://ftzortzo.github.io/cav-intersection-pedestrian-safety/">View the full companion site</a></b> — with inline videos, rendered math, and the alternative unsafe-set derivations.
-</p>
+
 
 ---
 
