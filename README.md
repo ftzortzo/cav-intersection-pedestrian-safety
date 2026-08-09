@@ -7,7 +7,7 @@
   <br/>
   <sub>Department of Civil and Environmental Engineering &nbsp;·&nbsp; Cornell University</sub>
   <br/>
-  <sub>Preprint &nbsp;·&nbsp; <i>Automatica</i> &nbsp;·&nbsp; 2026</sub>
+  <sub>Preprint &nbsp;·&nbsp; &nbsp;·&nbsp; 2026</sub>
 </p>
 
 ---
