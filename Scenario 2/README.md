@@ -1,22 +1,5 @@
 # Intersection Controller v3 — OCBF + Dynamic Resequencing
 
-A new control approach for the signal-free 12-path intersection simulator,
-combining two methods:
-
-- **OCBF control** (Paper 1 — Xu, Xiao, Cassandras, Zhang, Li, *A General
-  Framework for Decentralized Safe Optimal Control of CAVs in Multi-Lane
-  Signal-Free Intersections*, IEEE T-ITS 2022): each CAV tracks an unconstrained
-  energy-and-time-optimal **reference** trajectory with an **Optimal-Control +
-  Control-Barrier-Function** QP that enforces all safety constraints online.
-- **Dynamic resequencing** (Paper 2 — Zhang & Cassandras, *A Decentralized
-  Optimal Control Framework for CAVs at Urban Intersections with Dynamic
-  Resequencing*, IEEE CDC 2018): when a CAV enters the control zone, the crossing
-  order is re-evaluated to improve throughput; that order defines the lateral
-  conflict priorities (who yields to whom).
-
-This is a **separate approach** from the reorganized v2 controller — both v2 and
-the original folder are left untouched.
-
 ## How to run
 
 1. Open MATLAB in this folder.
