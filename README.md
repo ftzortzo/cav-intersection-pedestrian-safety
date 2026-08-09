@@ -256,10 +256,14 @@ Scenario 3 adds a second pedestrian on the east leg, moving north to south. The 
     <img src="https://img.youtube.com/vi/EounKWgiO_0/hqdefault.jpg" alt="Scenario 3: two pedestrians" width="720"/>
   </a>
 </p>
+### Stress Cases & Robustness to Perception Noise (§7.3, §7.4)
 
-## Stress cases + robustness to perception noise (§7.4) (§7.3)
+Here we demonstrate the controller's behavior under nominal conditions as well as extreme perception noise and constraint conflict stress test scenarios.
 
-Across Scenarios 2 and 3, vehicle 4 exhibits the smallest safety margin — 3.6 to 3.8&nbsp;m from the pedestrian, briefly breaching the $r = 4$&nbsp;m conservative disk though never entering the pedestrian's physical footprint. This happens because vehicle 4 approaches the south exit while the pedestrian is still on the lane, so the road-boundary barrier conditions and the VRU barrier condition become simultaneously active and compete for the available control authority. The video below shows this conflict of constraints in slow motion. To assess robustness, Section 7.4 repeats Scenarios 2 and 3 with the estimated VRU position corrupted by bounded perception noise consistent with the Velodyne HDL-32E specification (see Appendix A). We enforce the certificate on an inflated safe set of radius $r + \varepsilon_p$ (Proposition 7), which preserves collision avoidance for any measurement consistent with the error bound — without any structural change to the QP. In both scenarios, the trajectories under noise are visually near-indistinguishable from the noise-free case.
+---
+
+#### 1. Standard Collision Avoidance (Nominal Conditions)
+> **Baseline:** Demonstrates a successful collision avoidance maneuver by Connected Autonomous Vehicles (CAVs) under nominal operational conditions.
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=l8eIKK05ToE">
@@ -267,11 +271,21 @@ Across Scenarios 2 and 3, vehicle 4 exhibits the smallest safety margin — 3.6 
   </a>
 </p>
 
+---
+
+#### 2. Stress Case: Controller Limit / Unavoidable Collision
+> **Failure Mode (§7.4):** An extreme stress scenario introducing high perception noise where severe constraint conflicts prevent the controller from successfully avoiding a collision.
+
 <p align="center">
   <a href="https://www.youtube.com/watch?v=1Oq9MSfiaxs">
     <img src="https://img.youtube.com/vi/1Oq9MSfiaxs/hqdefault.jpg" alt="Scenario 2 with sensor noise" width="720"/>
   </a>
 </p>
+
+---
+
+#### 3. Stress Case: Robust Avoidance Under Noise
+> **Success Mode (§7.3):** A challenging stress test with active sensor noise where the controller robustly maintains trajectory bounds and successfully avoids collision.
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=n5lvJsb3Wmw">
