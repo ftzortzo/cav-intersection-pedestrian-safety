@@ -21,7 +21,6 @@ On this website, we provide supplementary material to facilitate the understandi
 - [Stress cases (§7.3)](#stress-cases-73)
 - [Robustness to perception noise (§7.4)](#robustness-to-perception-noise-74)
 - [Code repository (§7.5)](#code-repository-75)
-- [Reproducing the simulations](#reproducing-the-simulations)
 - [Citation](#citation)
 
 ## Identifying an unconstrained trajectory (§3.1)
@@ -301,20 +300,9 @@ Below, we present three videos demonstrating our controller's performance within
 The code that implements every part of the framework is organized to mirror the structure of the paper.
 
 ```
-docs/                       Companion website (served via GitHub Pages)
-low_level_pmp/              PMP-based unconstrained trajectory (§3.1)
-cbf_qp_nominal/             Nominal CBF-QP with relaxed standstill (§3.2)
-emergency_mode/             Bicycle model, HOCBFs, CLF, QP (§4)
-resequencing/               ρ-factor priority and replanning (§5)
-noise_and_dynamics/         Reinforced barriers, friction circle (§6)
-simulink_roadrunner/        Full co-simulation with SimulinkVehicle_1/2
-coordinator/                Coordinator kit generator
-figures/                    Reproducibility for the paper's figures
+[Scenario 2 README](Scenario%202/README.md)
 ```
 
-## Reproducing the simulations
-
-The full simulation environment requires MATLAB R2024a or later, Simulink, and RoadRunner with the RoadRunner Scenario add-on. Setup and run instructions are documented per folder as the code is released; for a first look at the emergency-mode controller in isolation, start with `emergency_mode/`, and then move to `simulink_roadrunner/` for the full co-simulation.
 
 ## Citation
 
