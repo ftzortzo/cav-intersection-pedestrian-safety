@@ -265,7 +265,7 @@ Below, we present three videos demonstrating our controller's performance within
 ---
 
 #### 1. Standard Collision Avoidance (Nominal Conditions)
-> **Baseline:** Demonstrates a successful collision avoidance maneuver by Connected Autonomous Vehicles (CAVs) under nominal operational conditions.
+> **Baseline:** Demonstrates a successful collision avoidance maneuver by CAVs under nominal operational conditions.
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=l8eIKK05ToE">
@@ -276,7 +276,7 @@ Below, we present three videos demonstrating our controller's performance within
 ---
 
 #### 2. Stress Case: Controller Limit / Unavoidable Collision
-> **Failure Mode (§7.4):** An extreme stress scenario introducing high perception noise where severe constraint conflicts prevent the controller from successfully avoiding a collision.
+> **Failure Mode:** An extreme stress scenario introducing high perception noise where severe constraint conflicts prevent the controller from successfully avoiding a collision.
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=1Oq9MSfiaxs">
@@ -287,7 +287,7 @@ Below, we present three videos demonstrating our controller's performance within
 ---
 
 #### 3. Stress Case: Robust Avoidance Under Noise
-> **Success Mode (§7.3):** A challenging stress test with active sensor noise where the controller robustly maintains trajectory bounds and successfully avoids collision.
+> **Success Mode:** A challenging stress test with active sensor noise where the controller robustly maintains trajectory bounds and successfully avoids collision.
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=n5lvJsb3Wmw">
