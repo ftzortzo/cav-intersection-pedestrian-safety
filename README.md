@@ -256,9 +256,9 @@ Scenario 3 adds a second pedestrian on the east leg, moving north to south. The 
     <img src="https://img.youtube.com/vi/EounKWgiO_0/hqdefault.jpg" alt="Scenario 3: two pedestrians" width="720"/>
   </a>
 </p>
-### Stress Cases & Robustness to Perception Noise (§7.3, §7.4)
 
-Here we demonstrate the controller's behavior under nominal conditions as well as extreme perception noise and constraint conflict stress test scenarios.
+RoadRunner + Simulink Co-simulation
+Below, we present three videos demonstrating our controller's performance within a RoadRunner and Simulink co-simulation environment. Each vehicle executes its control behavior via a dedicated Simulink model. We demonstrate the controller under nominal operating conditions, constraint-conflict stress scenarios, and perception noise.
 
 ---
 
