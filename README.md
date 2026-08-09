@@ -12,7 +12,7 @@
 
 ---
 
-On this website, we provide supplementary material to facilitate the understanding of our paper, entitled *"Handling Uncertainty of Vulnerable Road Users in Coordinating Connected and Automated Vehicles at Signal-Free Intersections."* The material is presented in the same order it appears in the paper, starting with the low-level controller in §3.1, moving through the alternative unsafe-set representations in §4.2, the real-time feasibility of the emergency-mode QP in §4.7, the simulation sc:enarios in §7, and finishing with the code repository.
+On this website, we provide supplementary material to facilitate the understanding of our paper, entitled *"Handling Uncertainty of Vulnerable Road Users in Coordinating Connected and Automated Vehicles at Signal-Free Intersections."* The material is presented in the same order it appears in the paper, starting with the low-level controller in §3.1, moving through the alternative unsafe-set representations in §4.2, the real-time feasibility of the emergency-mode QP in §4.7, the simulation scenarios in §7, and finishing with the code repository.
 
 - [Identifying an unconstrained trajectory (§3.1)](#identifying-an-unconstrained-trajectory-31)
 - [Alternative unsafe-set representations (§4.2)](#alternative-unsafe-set-representations-42)
@@ -34,8 +34,9 @@ In Section 3.1, we introduce the two-layer optimal control problem that yields a
   </a>
 </p>
 
-## Alternative unsafe-set representations | Ellipsoidal unsafe set — CBF derivation (§4.2)
+## Alternative unsafe-set representations (§4.2)
 
+### Ellipsoidal unsafe set — CBF derivation
 Section 4.2 of the paper models each VRU's unsafe set as a disk
 
 $$\mathcal{D} = \{(x,y) : (x - x_p)^2 + (y - y_p)^2 \le r^2\}$$
@@ -134,7 +135,7 @@ $$\tilde{x} = (x - x_p)\cos\phi + (y - y_p)\sin\phi, \qquad \tilde{y} = -(x - x_
 
 The rotated ellipse is
 
-$$\mathcal{E}_\phi = \lbrace\(x,y) : \frac{\tilde{x}^2}{a^2} + \frac{\tilde{y}^2}{b^2} \le 1\rbrace.$$
+$$\mathcal{E}_\phi = \lbrace (x,y) : \frac{\tilde{x}^2}{a^2} + \frac{\tilde{y}^2}{b^2} \le 1 \rbrace.$$
 
 Introducing the displacement vector $\mathbf{d} = [x - x_p,\ y - y_p]^T$ and the symmetric positive-definite matrix
 
@@ -259,39 +260,39 @@ Scenario 3 adds a second pedestrian on the east leg, moving north to south. The 
 
 ---
 
-RoadRunner + Simulink Co-simulation
+## Stress cases (§7.3)
+
 Below, we present three videos demonstrating our controller's performance within a RoadRunner and Simulink co-simulation environment. Each vehicle executes its control behavior via a dedicated Simulink model. We demonstrate the controller under nominal operating conditions, constraint-conflict stress scenarios, and perception noise.
 
----
+### Standard collision avoidance (nominal conditions)
 
-#### 1. Standard Collision Avoidance (Nominal Conditions)
 > **Baseline:** Demonstrates a successful collision avoidance maneuver by CAVs under nominal operational conditions.
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=l8eIKK05ToE">
-    <img src="https://img.youtube.com/vi/l8eIKK05ToE/hqdefault.jpg" alt="Vehicle 4 conflict of constraints" width="720"/>
+    <img src="https://img.youtube.com/vi/l8eIKK05ToE/hqdefault.jpg" alt="Nominal collision avoidance" width="720"/>
   </a>
 </p>
 
----
+### Controller limit — unavoidable collision
 
-#### 2. Stress Case: Controller Limit / Unavoidable Collision
-> **Failure Mode:** An extreme stress scenario introducing high perception noise where severe constraint conflicts prevent the controller from successfully avoiding a collision.
+> **Failure mode:** An extreme stress scenario introducing high perception noise where severe constraint conflicts prevent the controller from successfully avoiding a collision.
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=1Oq9MSfiaxs">
-    <img src="https://img.youtube.com/vi/1Oq9MSfiaxs/hqdefault.jpg" alt="Scenario 2 with sensor noise" width="720"/>
+    <img src="https://img.youtube.com/vi/1Oq9MSfiaxs/hqdefault.jpg" alt="Constraint conflict, unavoidable collision" width="720"/>
   </a>
 </p>
 
----
+## Robustness to perception noise (§7.4)
 
-#### 3. Stress Case: Robust Avoidance Under Noise
-> **Success Mode:** A challenging stress test with active sensor noise where the controller robustly maintains trajectory bounds and successfully avoids collision.
+### Robust avoidance under sensor noise
+
+> **Success mode:** A challenging stress test with active sensor noise where the controller robustly maintains trajectory bounds and successfully avoids collision.
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=n5lvJsb3Wmw">
-    <img src="https://img.youtube.com/vi/n5lvJsb3Wmw/hqdefault.jpg" alt="Scenario 3 with sensor noise" width="720"/>
+    <img src="https://img.youtube.com/vi/n5lvJsb3Wmw/hqdefault.jpg" alt="Robust avoidance under sensor noise" width="720"/>
   </a>
 </p>
 
