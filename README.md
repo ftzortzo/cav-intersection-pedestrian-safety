@@ -299,9 +299,7 @@ Below, we present three videos demonstrating our controller's performance within
 
 The code that implements every part of the framework is organized to mirror the structure of the paper.
 
-```
 [Scenario 2 README](Scenario%202/README.md)
-```
 
 
 ## Citation
