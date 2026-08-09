@@ -257,6 +257,8 @@ Scenario 3 adds a second pedestrian on the east leg, moving north to south. The 
   </a>
 </p>
 
+---
+
 RoadRunner + Simulink Co-simulation
 Below, we present three videos demonstrating our controller's performance within a RoadRunner and Simulink co-simulation environment. Each vehicle executes its control behavior via a dedicated Simulink model. We demonstrate the controller under nominal operating conditions, constraint-conflict stress scenarios, and perception noise.
 
